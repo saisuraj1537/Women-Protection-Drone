@@ -24,6 +24,20 @@ GPIO.setwarnings(False)
 
 ser = serial.Serial('/dev/ttyAMA0', 9600, timeout=1)
 
+def turn_on():
+    GPIO.output(relay, GPIO.HIGH)  # Turn on the relay
+    print("Relay turned ON")
+
+def turn_off():
+    GPIO.output(relay, GPIO.LOW)  # Turn off the relay
+    print("Relay turned OFF")
+
+turn_off()
+time.sleep(1)
+turn_on()
+time.sleep(1)
+turn_off()
+
 #connect to drone
 def connectMyCopter():
   parser =  argparse.ArgumentParser(description='commands')
@@ -148,6 +162,7 @@ vehicle = connectMyCopter()
 time.sleep(2)
 ht = 20
 arm_and_takeoff(ht)
+turn_on()
 #GPIO.output(relay,True)
 latitude = float(lg[lat1s:lat1e])
 print(latitude)
@@ -157,5 +172,6 @@ time.sleep(2)
 goto_location(latitude,longitude)
 #GPIO.output(relay,False)
 time.sleep(10)
+turn_off()
 print("Returning to Launch")
 vehicle.mode = VehicleMode("RTL")
