@@ -1,16 +1,37 @@
-- Install all the things
+- Install all the things using the terminal
 
   sudo apt-get update
   sudo apt-get upgrade
-  sudo apt-get install python-pip
-  sudo apt-get install python-dev
+  sudo apt-get install python3-pip
+  sudo apt-get install python3-dev
   sudo pip install future
   sudo apt-get install screen wxgtk libxml libxslt
   sudo pip install pyserial
   sudo pip install dronekit
   sudo pip install MAVProxy
+  sudo pip install geopy
 
-- Set up RPi for UART communication
-  raspi-config then disable UART for console, enable it for serial port hardware
-  go into /boot/config.txt and add "dtoverlay=disable-bt"
-  if ttyAMA0 isn't in /dev, enable_uart=1 in /boot/config
+- After installing the above commands
+
+- Type the following command in the terminal
+
+  sudo raspi-config
+
+- After typing the above command using the arrow keys go down to the interface options and click 'Enter'
+- Now go to serial port and keep the first option as 'No' and click 'Enter'
+- After click the 'Yes' and click 'Enter'
+- Now using the right arrow go to the 'Finish' and click 'Enter'
+- Now 'Reboot' the Raspberripi
+
+- Now open the terminal and type the following command
+
+  sudo nano /boot/config.txt
+
+- Now go to the last line and type 
+
+  enable_uart=1
+  dtoverlay=disable-bt
+
+- Now click 'CTRL' + 'O'
+- Click 'Enter'
+- Click 'CTRL' + 'X'
